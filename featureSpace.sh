@@ -8,7 +8,7 @@ function getPostCode
     echo -e "##### Retrieving [[ $postcode ]] details #####\n"
     sleep 2
 
-    curl -s $url | jq .
+    curl -s $url | jq '.result | .postcode, .country, .region'
 }
 
 function getValidation
@@ -34,7 +34,7 @@ function getNearest
     echo -e "##### Retrieving [[ $postcode ]] near postcodes #####\n"
     sleep 2
 
-    curl -s $url/nearest | jq .
+    curl -s $url/nearest | jq '.result[] | .postcode, .country, .region'
 }
 
 
